@@ -1,3 +1,29 @@
+let path = "M 10 100 Q 550 100 1190 100"
+const finalPath = "M 10 100 Q 550 100 1190 100";
+
+
+const pathArea = document.querySelector("svg")
+
+pathArea.addEventListener('mousemove', function (event) {
+    const rect = pathArea.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    path = `M 10 100 Q ${x} ${y} 1190 100`;
+    gsap.to('svg path', {
+        attr: {d: path},
+        duration: 0.3,
+        ease: "power3.out"
+    });
+});
+
+pathArea.addEventListener('mouseleave', function () {
+    gsap.to('svg path', {
+        attr: {d: finalPath},
+        duration: 1.5,
+        ease: "elastic.out(1, 0.2)"
+    })
+})
+
 gsap.from('#page1 h1', {
     scale: 0.6,
     scrollTrigger: {

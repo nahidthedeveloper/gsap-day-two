@@ -18,6 +18,7 @@ body {
     background-color: darkslategray;
     overflow-x: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
