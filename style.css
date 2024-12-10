@@ -10,7 +10,21 @@ body {
     height: 100%;
     width: 100%;
     background-color: darkslategray;
+    cursor: default;
 }
+
+#cursor {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: white;
+    position: fixed;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    pointer-events: none;
+}
+
 
 #page1 {
     height: 100%;

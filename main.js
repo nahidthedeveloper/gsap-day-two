@@ -1,8 +1,27 @@
 let path = "M 10 100 Q 550 100 1190 100"
 const finalPath = "M 10 100 Q 550 100 1190 100";
 
-
 const pathArea = document.querySelector("svg")
+const body = document.querySelector('body')
+
+body.addEventListener('mousemove', function (event) {
+    gsap.to("#cursor", {
+        x: event.clientX,
+        y: event.clientY,
+        autoAlpha: 1,
+        duration: 0.5,
+        ease: 'back.out'
+    });
+});
+
+body.addEventListener('mouseleave', function () {
+    gsap.to("#cursor", {
+        autoAlpha: 0,
+        duration: 0.5,
+        ease: 'back.out'
+    });
+});
+
 
 pathArea.addEventListener('mousemove', function (event) {
     const rect = pathArea.getBoundingClientRect();
