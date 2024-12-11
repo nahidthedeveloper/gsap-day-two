@@ -1,7 +1,6 @@
 let path = "M 10 100 Q 550 100 1190 100"
 const finalPath = "M 10 100 Q 550 100 1190 100";
 
-const pathArea = document.querySelector("svg")
 const body = document.querySelector('body')
 
 const cursor = document.querySelector("#cursor");
@@ -60,6 +59,37 @@ body.addEventListener('mouseleave', function () {
     });
 });
 
+const h1 = document.querySelector('.nav h1')
+const appName = h1.textContent.split("")
+const halfText = Math.floor(appName.length / 2)
+let appNameToSpan = ""
+
+appName.forEach(function (text, index) {
+    if (index < halfText) {
+        appNameToSpan += `<span class="firstHalf">${text}</span>`
+    } else {
+        appNameToSpan += `<span class="secondHalf">${text}</span>`
+    }
+})
+h1.innerHTML = appNameToSpan
+
+gsap.from('.firstHalf', {
+    y: 50,
+    duration: 0.3,
+    delay: 1,
+    stagger: 0.15,
+    opacity: 0
+})
+
+gsap.from('.secondHalf', {
+    y: 50,
+    duration: 0.3,
+    delay: 1,
+    stagger: -0.15,
+    opacity: 0
+})
+
+
 const openMenu = document.querySelector('.nav i')
 const closeMenu = document.querySelector('.sidebar i')
 
@@ -82,14 +112,16 @@ menuTimeline
 
 menuTimeline.pause()
 
-openMenu.addEventListener('click', function (){
+openMenu.addEventListener('click', function () {
     menuTimeline.play()
 })
 
-closeMenu.addEventListener('click', function (){
+closeMenu.addEventListener('click', function () {
     menuTimeline.reverse()
 })
 
+
+const pathArea = document.querySelector("svg")
 
 pathArea.addEventListener('mousemove', function (event) {
     const rect = pathArea.getBoundingClientRect();
