@@ -60,6 +60,36 @@ body.addEventListener('mouseleave', function () {
     });
 });
 
+const openMenu = document.querySelector('.nav i')
+const closeMenu = document.querySelector('.sidebar i')
+
+const menuTimeline = gsap.timeline()
+
+menuTimeline
+    .to('.sidebar', {
+        right: '0%',
+        duration: 0.5
+    })
+    .from('.sidebar h4', {
+        x: 150,
+        opacity: 0,
+        duration: 0.3,
+        stagger: 0.2,
+    })
+    .from('.sidebar i', {
+        opacity: 0
+    })
+
+menuTimeline.pause()
+
+openMenu.addEventListener('click', function (){
+    menuTimeline.play()
+})
+
+closeMenu.addEventListener('click', function (){
+    menuTimeline.reverse()
+})
+
 
 pathArea.addEventListener('mousemove', function (event) {
     const rect = pathArea.getBoundingClientRect();
