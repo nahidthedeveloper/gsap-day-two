@@ -14,15 +14,16 @@ body {
 }
 
 #cursor {
-    height: 30px;
-    width: 30px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
     border-radius: 50%;
-    background-color: white;
     position: fixed;
-    z-index: 1000;
-    transform: translate(-50%, -50%);
-    visibility: hidden;
+    top: 0;
+    left: 0;
     pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
 }
 
 

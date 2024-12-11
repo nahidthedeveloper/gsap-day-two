@@ -4,10 +4,48 @@ const finalPath = "M 10 100 Q 550 100 1190 100";
 const pathArea = document.querySelector("svg")
 const body = document.querySelector('body')
 
-body.addEventListener('mousemove', function (event) {
-    gsap.to("#cursor", {
-        x: event.clientX,
-        y: event.clientY,
+const cursor = document.querySelector("#cursor");
+const pos = {x: window.innerWidth / 2, y: window.innerHeight / 2}; // Current cursor position
+const mouse = {x: pos.x, y: pos.y}; // Mouse position
+let lastSpeed = 0; // Speed at the last frame
+let skewX = 0; // Current skew value
+
+gsap.to({}, 0.01, {
+    repeat: -1,
+    onUpdate: () => {
+        const prevX = pos.x;
+        const prevY = pos.y;
+
+        pos.x += (mouse.x - pos.x) * 0.15; // Smooth following
+        pos.y += (mouse.y - pos.y) * 0.15;
+
+        const dx = mouse.x - pos.x;
+        const dy = mouse.y - pos.y;
+        const distance = Math.sqrt(dx * dx + dy * dy); // Distance between cursor and mouse
+        const speed = Math.sqrt((pos.x - prevX) ** 2 + (pos.y - prevY) ** 2); // Current speed
+        const reverse = speed < lastSpeed; // Reverse motion check
+
+        // Smooth skew transition
+        const targetSkew = reverse ? -distance * 0.2 : distance * 0.2;
+        skewX += (targetSkew - skewX) * 0.1; // Eased skew transition
+
+        gsap.set(cursor, {
+            x: pos.x,
+            y: pos.y,
+            skewX: skewX,
+            scale: 1, // Uniform scale
+        });
+
+        // Update last speed
+        lastSpeed = speed;
+    },
+});
+
+// Track mouse position
+body.addEventListener("mousemove", (event) => {
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+    gsap.to(cursor, {
         autoAlpha: 1,
         duration: 0.5,
         ease: 'back.out'
@@ -15,7 +53,7 @@ body.addEventListener('mousemove', function (event) {
 });
 
 body.addEventListener('mouseleave', function () {
-    gsap.to("#cursor", {
+    gsap.to(cursor, {
         autoAlpha: 0,
         duration: 0.5,
         ease: 'back.out'
