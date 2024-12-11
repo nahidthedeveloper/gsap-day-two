@@ -169,7 +169,7 @@ window.addEventListener('wheel', function (event) {
         gsap.to('.marque', {
             transform: 'translateX(-200%)',
             duration: 5,
-            ease: 'none',
+            ease: 'linear',
             repeat: -1
         })
         gsap.to('.marque i', {
@@ -179,7 +179,7 @@ window.addEventListener('wheel', function (event) {
         gsap.to('.marque', {
             transform: 'translateX(0%)',
             duration: 5,
-            ease: 'none',
+            ease: 'linear',
             repeat: -1
         })
         gsap.to('.marque i', {

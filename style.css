@@ -110,22 +110,23 @@ svg {
     bottom: 0;
     left: 0;
     overflow: hidden;
+    width: 100%;
 }
 
 #page1 .marque {
     display: flex;
     align-items: center;
     gap: 20px;
-    flex-shrink: 0;
+    white-space: nowrap;
     transform: translateX(-100%);
 }
 
 #page1 .marque h2 {
-    font-size: 40px;
+    font-size: 60px;
 }
 
 #page1 .marque i {
-    font-size: 40px;
+    font-size: 60px;
 }
 
 
