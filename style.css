@@ -101,11 +101,10 @@ svg {
     text-align: center;
 }
 
-#page1 .marque-container {
+.marque-container {
     background-color: chartreuse;
     padding: 30px 0;
     display: flex;
-    gap: 20px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -113,20 +112,21 @@ svg {
     width: 100%;
 }
 
-#page1 .marque {
+.marque {
     display: flex;
     align-items: center;
     gap: 20px;
     white-space: nowrap;
-    transform: translateX(-100%);
+    position: relative;
+    will-change: transform;
 }
 
-#page1 .marque h2 {
-    font-size: 60px;
+.marque h2 {
+    font-size: 6vw;
 }
 
-#page1 .marque i {
-    font-size: 60px;
+.marque i {
+    font-size: 6vw;
 }
 
 

@@ -1,6 +1,3 @@
-let path = "M 10 100 Q 550 100 1190 100"
-const finalPath = "M 10 100 Q 550 100 1190 100";
-
 const body = document.querySelector('body')
 
 function cursorAnimation() {
@@ -129,6 +126,8 @@ closeMenu.addEventListener('click', function () {
 })
 
 
+let path = "M 10 100 Q 550 100 1190 100"
+const finalPath = "M 10 100 Q 550 100 1190 100";
 const pathArea = document.querySelector("svg")
 
 pathArea.addEventListener('mousemove', function (event) {
@@ -164,29 +163,61 @@ gsap.from('#page1 h1', {
     }
 })
 
-window.addEventListener('wheel', function (event) {
-    if (event.deltaY > 0) {
-        gsap.to('.marque', {
-            transform: 'translateX(-200%)',
-            duration: 5,
-            ease: 'linear',
-            repeat: -1
-        })
-        gsap.to('.marque i', {
-            rotate: 180
-        })
-    } else {
-        gsap.to('.marque', {
-            transform: 'translateX(0%)',
-            duration: 5,
-            ease: 'linear',
-            repeat: -1
-        })
-        gsap.to('.marque i', {
-            rotate: 0
-        })
+
+
+let xPercent = -100; // Start at -100%
+let direction = -1;  // -1 for left scroll, 1 for right scroll
+let speed = 0.1;     // Speed multiplier (increase for faster animation)
+
+// Initialize GSAP animation on window load
+window.addEventListener("load", () => {
+    const text1 = document.querySelector("#text1");
+    const text2 = document.querySelector("#text2");
+    const icons = document.querySelectorAll(".marque i");
+
+    // Set initial positions
+    gsap.set(text1, {xPercent: xPercent});
+    gsap.set(text2, {xPercent: xPercent});
+    gsap.set(icons, {rotation: 0}); // Initial rotation
+
+    // Start animation loop
+    requestAnimationFrame(() => animate(text1, text2, icons));
+});
+
+const animate = (text1, text2, icons) => {
+    // Reset xPercent when it exceeds bounds
+    if (xPercent < -100) {
+        xPercent = 0;
+    } else if (xPercent > 0) {
+        xPercent = -100;
     }
-})
+
+    // Apply xPercent to both text elements
+    gsap.set(text1, {xPercent: xPercent});
+    gsap.set(text2, {xPercent: xPercent});
+
+    // Smoothly rotate the icons
+    gsap.to(icons, {
+        rotation: direction === -1 ? 180 : 0,
+        duration: 0.5,
+        ease: "power1.out",
+    });
+
+    // Increment xPercent based on direction and speed
+    xPercent += speed * direction;
+
+    // Continue animation loop
+    requestAnimationFrame(() => animate(text1, text2, icons));
+};
+
+// Update direction based on scroll
+window.addEventListener("wheel", (event) => {
+    direction = event.deltaY > 0 ? -1 : 1;
+});
+
+
+
+
 
 gsap.to('#page2 h1', {
     transform: "translateX(-190%)",
