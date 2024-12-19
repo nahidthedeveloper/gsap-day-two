@@ -128,7 +128,7 @@ closeMenu.addEventListener('click', function () {
 
 let path = "M 10 100 Q 550 100 1190 100"
 const finalPath = "M 10 100 Q 550 100 1190 100";
-const pathArea = document.querySelector("svg")
+const pathArea = document.querySelector("#page1 svg")
 
 pathArea.addEventListener('mousemove', function (event) {
     const rect = pathArea.getBoundingClientRect();
@@ -162,7 +162,6 @@ gsap.from('#page1 h1', {
         pin: true
     }
 })
-
 
 
 let xPercent = -100; // Start at -100%
@@ -216,17 +215,14 @@ window.addEventListener("wheel", (event) => {
 });
 
 
-
-
-
 gsap.to('#page2 h1', {
-    transform: "translateX(-190%)",
+    transform: "translateX(-200%)",
     scrollTrigger: {
         trigger: '#page2',
         scroller: 'body',
         // markers: true,
         start: 'top 0%',
-        end: 'top -150%',
+        end: 'top -100%',
         scrub: 2,
         pin: true
     }
@@ -265,3 +261,31 @@ timeline_one
     .to("#image-two", {
         width: "74%", height: "70vh"
     }, 'c')
+
+
+const timeline_two = gsap.timeline({
+    scrollTrigger: {
+        trigger: '#page4',
+        start: 'top 0%',
+        end: 'top -200%',
+        scrub: 2,
+        pin: true
+    }
+})
+
+timeline_two
+    .to(".topPart", {
+        top: '-50%'
+    }, 'a')
+    .to(".bottomPart", {
+        top: '100%'
+    }, 'a')
+    .to(".topPart h1", {
+        top: '125%'
+    }, 'a')
+    .to(".bottomPart h1", {
+        top: '-25%'
+    }, 'a')
+    .from(".middlePart .main", {
+        transform: "translateY(150%)"
+    }, 'a')

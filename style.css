@@ -82,17 +82,18 @@ body {
     cursor: pointer;
 }
 
-svg {
-    background-color: transparent;
-    z-index: 90;
-    /*position: fixed;*/
-}
 
 #page1 {
     height: 100%;
     width: 100%;
     background-color: lightblue;
     overflow-x: hidden;
+}
+
+svg {
+    background-color: transparent;
+    z-index: 90;
+    overflow: visible;
 }
 
 #page1 h1 {
@@ -141,6 +142,7 @@ svg {
     font-size: 40vw;
     text-transform: uppercase;
     white-space: nowrap;
+    margin-left: 100px;
 }
 
 #page3 {
@@ -177,14 +179,98 @@ svg {
 }
 
 #page4 {
+    position: relative;
     height: 100%;
     width: 100%;
     background-color: lightblue;
-    overflow-x: hidden;
+    overflow: hidden;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.topPart {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: lightblue;
+    z-index: 1;
+    top: 0;
+    overflow: hidden;
+}
+
+.middlePart {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    top: 0;
+    left: 0;
+    z-index: 0;
     display: flex;
-    /*flex-direction: column;*/
     justify-content: center;
     align-items: center;
 }
 
+.bottomPart {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: lightblue;
+    z-index: 1;
+    top: 50%;
+    overflow: hidden;
+}
 
+#page4 h1 {
+    font-size: 30vw;
+}
+
+.topPart h1 {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.bottomPart h1 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.middlePart .main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.middlePart h2 {
+    color: white;
+    font-size: 14vw;
+}
+
+
+.middlePart ul {
+    color: white;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.middlePart li {
+    color: white;
+    font-size: 6vw;
+}
+.middlePart ul a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.middlePart ul i {
+    color: white;
+}
